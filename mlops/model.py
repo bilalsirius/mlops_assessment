@@ -7,7 +7,7 @@ import traceback
 
 parent_dir = os.path.dirname(__file__)
 
-weight_path = os.path.join(parent_dir, "pytorch_model_weights_1.onnx")
+weight_path = os.path.join(parent_dir, "weights", "pytorch_model_weights_1.onnx")
 
 class Onnx:
   def __init__(self):
@@ -39,9 +39,9 @@ class Onnx:
       img = np.expand_dims(img, axis=0) # add shape 
       preds = self.model.run([self.output_name], {self.input_name: img})
       if preds:
-	return int(np.argmax(preds[0]))
+        return int(np.argmax(preds[0]))
       else:
-	return
+        return
     except:
       print(traceback.print_exc())
       return 

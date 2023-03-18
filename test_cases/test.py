@@ -16,14 +16,14 @@ mltailor = Onnx()
 class OnnxTest(unittest.TestCase):
 
     # Define a test method
-    def invalid_input(self):
-        result = mltailor.predictions(None)
+    def test_invalid_input(self):
+        result = mltailor.prediction(None)
         self.assertEqual(result, None)
 
     # Define another test method
-    def valid_input(self):
+    def test_valid_outputs(self):
         for img in img_paths:
-            self.assertEqual(mltailor.predictions(img), response[img.split('/')[-1]])
+            self.assertEqual(mltailor.prediction(img), int(response[img.split('/')[-1]]))
 
 # Run the tests
 if __name__ == '__main__':
