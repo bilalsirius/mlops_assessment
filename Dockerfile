@@ -11,4 +11,4 @@ RUN pip install -r requirements.txt
 EXPOSE 8080
 
 # Run the command to start the application
-CMD python app.py
+CMD ["python","app.py"]

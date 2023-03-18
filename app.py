@@ -1,5 +1,5 @@
 import time
-
+a = "a"
 def init():
     global a
     time.sleep(10)
