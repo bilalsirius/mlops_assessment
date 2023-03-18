@@ -4,7 +4,7 @@ import os
 import sys
 
 # Define the paths of two sample images
-SERVER_URL = 'http://10.244.2.36:8080'
+SERVER_URL = 'http://10.244.6.223:8080'
 
 parent_dir = os.getcwd()
 IMG_PATHS = [parent_dir + '/test_cases/images/tench.jpeg', 
