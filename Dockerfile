@@ -6,7 +6,7 @@ COPY . /app
 WORKDIR /app
 
 RUN python -m pip install --upgrade pip
-RUN pip install --trusted-host pypi.python.org --verbose -r requirements.txt
+RUN pip install -r requirements.txt
 
 EXPOSE 8080
 
