@@ -45,12 +45,5 @@ class Onnx:
     except:
       print(traceback.print_exc())
       return {"label":""}
-
-if __name__ == "__main__":
-  try:
-    mtailor = Onnx()
-    img_path = open("./../test_cases/images/n01667114_mud_turtle.jpeg", "rb").read()
-    print(mtailor.prediction(img_path))
-  except:
-    print(traceback.print_exc())
-  
+    
+    

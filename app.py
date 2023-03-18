@@ -1,15 +1,13 @@
 import time
-a = "a"
-print("a")
+
 def init():
-    global a
-    time.sleep(10)
-    a = "hello"
-    print(a)
+    global model
+    from mlops.model import Onnx
+    model = Onnx()
 
 def inference(model_inputs:dict) -> dict:
-    global a
-    b = a + " world"
-    print(b)
-
-    return {"greeting": b}, model_inputs
+    global model
+    img = model_inputs["image"]
+    img = model.preprocess_cv2(img)
+    pred = model.prediction(img)
+    return pred

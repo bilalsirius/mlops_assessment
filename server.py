@@ -27,19 +27,14 @@ def healthcheck(request):
 @server.route('/predict', methods=['POST'])
 def predict(request):
     print(request)
-    # img_data = request.files['image'].read()
-    # # Preprocess the image data if necessary
-    # prediction = onnx_model.predict(img_data)
-    # return jsonify(prediction)
+    
 # Inference POST handler at '/' is called for every http call from Banana
 @server.route('/', methods=["POST"]) 
 def inference(request):
-    print(request)
     try:
         model_inputs = response.json.loads(request.json)
     except:
         model_inputs = request.json
-    print(model_inputs)
     output = user_src.inference(model_inputs)
 
     return response.json(output)
