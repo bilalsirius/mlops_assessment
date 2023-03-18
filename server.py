@@ -3,7 +3,7 @@
 
 # Instead, edit the init() and inference() functions in app.py
 
-from flask import Flask, request as response, jsonify
+from sanic import Sanic, response
 import subprocess
 import app as user_src
 
@@ -12,7 +12,7 @@ import app as user_src
 user_src.init()
 
 # Create the http server app
-server = Flask(__name__)
+server = Sanic("my_app")
 
 # Healthchecks verify that the environment is correct on Banana Serverless
 @server.route('/healthcheck', methods=["GET"])
@@ -24,7 +24,13 @@ def healthcheck(request):
         gpu = True
 
     return response.json({"state": "healthy", "gpu": gpu})
-
+@server.route('/predict', methods=['POST'])
+def predict(request):
+    print(request)
+    # img_data = request.files['image'].read()
+    # # Preprocess the image data if necessary
+    # prediction = onnx_model.predict(img_data)
+    # return jsonify(prediction)
 # Inference POST handler at '/' is called for every http call from Banana
 @server.route('/', methods=["POST"]) 
 def inference(request):
@@ -37,13 +43,6 @@ def inference(request):
 
     return response.json(output)
 
-@server.route('/predict', methods=['POST'])
-def predict(request):
-    print(request)
-    # img_data = re.files['image'].read()
-    # Preprocess the image data if necessary
-    # prediction = onnx_model.predict(img_data)
-    # return jsonify(prediction)
 
 if __name__ == '__main__':
     server.run(host='0.0.0.0', port=8000, workers=1)
