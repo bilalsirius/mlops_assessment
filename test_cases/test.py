@@ -23,6 +23,7 @@ class OnnxTest(unittest.TestCase):
     # Define another test method
     def test_valid_outputs(self):
         for img in img_paths:
+            img = open(img, "rb").read()
             self.assertEqual(mltailor.prediction(img), response[img.split('/')[-1]["label"]])
 
 # Run the tests
