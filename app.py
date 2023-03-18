@@ -14,7 +14,7 @@ print("app file chali")
 
 def runf():
     print("ye chala?")
-# @app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['POST'])
 def predict():
     print(request.files["image"])
     img_bytes = request.files['image'].read()
