@@ -13,18 +13,9 @@ imagesize==1.4.1
 ipykernel==5.3.4
 ipython==7.9.0
 ipython-genutils==0.2.0
-ipython-sql==0.3.9
-ipywidgets==7.7.1
 jieba==0.42.1
-Jinja2==3.1.2
 joblib==1.1.1
 jsonschema==4.3.3
-jupyter-client==6.1.12
-jupyter-console==6.1.0
-jupyter_core==5.2.0
-jupyterlab-pygments==0.2.2
-jupyterlab-widgets==3.0.5
-numexpr==2.8.4
 numpy==1.22.4
 onnx==1.13.1
 onnxruntime==1.14.1
@@ -36,7 +27,6 @@ Pillow==8.4.0
 pip-tools==6.6.2
 PyOpenGL==3.1.6
 pyparsing==3.0.9
-pyrsistent==0.19.3
 PySocks==1.7.1
 pytensor==2.10.1
 pytest==3.6.4
