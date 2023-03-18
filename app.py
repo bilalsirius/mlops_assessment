@@ -12,6 +12,7 @@ onnx_model = Onnx()
 
 @app.route('/predict', methods=['POST'])
 def predict():
+    print(request.files["image"])
     img_bytes = request.files['image'].read()
     # Preprocess the image data if necessary
     prediction = onnx_model.prediction(img_bytes)

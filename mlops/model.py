@@ -1,5 +1,4 @@
 from PIL import Image
-import cv2
 import numpy as np
 import os
 import io
@@ -17,9 +16,9 @@ class Onnx:
     self.output_name = self.model.get_outputs()[0].name
 
   def preprocess_cv2(self, img):
-      img = cv2.resize(img, (224, 224)) # resize image to 224x224
+      img = img.resize((224, 224)) # resize image to 224x224
       # img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) # convert BGR to RGB
-      img = img[:,:,:3]
+      img = np.array(img)[:,:,:3]
       img = np.float32(img) / 255.0 # normalize pixel values to [0,1]
       mean = np.array([0.485, 0.456, 0.406])
       std = np.array([0.229, 0.224, 0.225]) 
@@ -36,7 +35,7 @@ class Onnx:
     try:
     
       img = Image.open(io.BytesIO(img_byte)) # open image in pil
-      img = self.preprocess_cv2(np.array(img)) # return preprocess image
+      img = self.preprocess_cv2(img) # return preprocess image
       img = np.expand_dims(img, axis=0) # add shape 
       preds = self.model.run([self.output_name], {self.input_name: img})
       if preds:
