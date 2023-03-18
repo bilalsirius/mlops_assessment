@@ -8,6 +8,7 @@ import traceback
 parent_dir = os.path.dirname(__file__)
 sys.path.append(parent_dir)
 from pytorch_model import Classifier, BasicBlock
+sys.path.remove(parent_dir)
 
 if __name__ == "__main__":
 	try:

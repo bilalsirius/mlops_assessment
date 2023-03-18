@@ -2,6 +2,7 @@ from PIL import Image
 import cv2
 import numpy as np
 import os
+import io
 import onnxruntime
 import traceback
 
@@ -31,25 +32,25 @@ class Onnx:
       return img
 
     
-  def prediction(self, img_path):
+  def prediction(self, img_byte):
     try:
     
-      img = Image.open(img_path) # open image in pil
+      img = Image.open(io.BytesIO(img_byte)) # open image in pil
       img = self.preprocess_cv2(np.array(img)) # return preprocess image
       img = np.expand_dims(img, axis=0) # add shape 
       preds = self.model.run([self.output_name], {self.input_name: img})
       if preds:
-        return int(np.argmax(preds[0]))
+        return {"label":str(np.argmax(preds[0]))}
       else:
-        return
+        return {"label":""}
     except:
       print(traceback.print_exc())
-      return 
+      return {"label":""}
 
 if __name__ == "__main__":
   try:
     mtailor = Onnx()
-    img_path = "./../test_cases/images/n01667114_mud_turtle.jpeg"
+    img_path = open("./../test_cases/images/n01667114_mud_turtle.jpeg", "rb").read()
     print(mtailor.prediction(img_path))
   except:
     print(traceback.print_exc())
