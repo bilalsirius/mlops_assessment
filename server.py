@@ -34,15 +34,16 @@ def predict(request):
 # Inference POST handler at '/' is called for every http call from Banana
 @server.route('/', methods=["POST"]) 
 def inference(request):
+    print(request)
     try:
         model_inputs = response.json.loads(request.json)
     except:
         model_inputs = request.json
-
+    print(model_inputs)
     output = user_src.inference(model_inputs)
 
     return response.json(output)
 
 
 if __name__ == '__main__':
-    server.run(host='0.0.0.0', port=8000)#, workers=1)
+    server.run(host='0.0.0.0', port=8000, workers=1)
