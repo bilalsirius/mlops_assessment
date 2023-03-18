@@ -33,7 +33,6 @@ class Onnx:
     
   def prediction(self, img_byte):
     try:
-    
       img = Image.open(io.BytesIO(img_byte)) # open image in pil
       img = self.preprocess_cv2(img) # return preprocess image
       img = np.expand_dims(img, axis=0) # add shape 
@@ -45,5 +44,4 @@ class Onnx:
     except:
       print(traceback.print_exc())
       return {"label":""}
-    
     
