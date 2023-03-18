@@ -12,4 +12,4 @@ def inference(model_inputs:dict) -> dict:
     b = a + " world"
     print(b)
 
-    return {"greeting": b}.update(model_inputs)
+    return {"greeting": b}, model_inputs
