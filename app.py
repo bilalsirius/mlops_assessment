@@ -1,5 +1,6 @@
 import time
 a = "a"
+print("hello")
 def init():
     global a
     time.sleep(10)
