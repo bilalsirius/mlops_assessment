@@ -23,6 +23,7 @@ def inference(model_inputs:dict) -> dict:
         model_inputs = json.loads(model_inputs)
     except:
         pass
+    return {"a":type(model_inputs), "b":model_inputs}
     try:
         if "image" in model_inputs:
             img_p = model_inputs["image"]
