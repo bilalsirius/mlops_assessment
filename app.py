@@ -14,6 +14,7 @@ def init():
 
 def inference(model_inputs:dict) -> dict:
     global model
+    return model_inputs
     try:
         model_inputs = json.loads(model_inputs)
     except:
