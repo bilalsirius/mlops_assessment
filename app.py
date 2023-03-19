@@ -15,7 +15,7 @@ def init():
     global model
     model = Onnx()
     print("model loaded!!")
-    os.system("python -m unittest discover test_cases/")
+    # os.system("python -m unittest discover test_cases/")
 
 def inference(model_inputs):
     global model
