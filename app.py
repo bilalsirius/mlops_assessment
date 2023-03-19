@@ -19,10 +19,10 @@ def init():
 
 def inference(model_inputs:dict) -> dict:
     global model
-    try:
-        model_inputs = json.loads(model_inputs)
-    except:
-        pass
+    # try:
+    #     model_inputs = json.loads(model_inputs)
+    # except:
+    #     pass
     return {"a":type(model_inputs), "b":model_inputs}
     try:
         if "image" in model_inputs:
