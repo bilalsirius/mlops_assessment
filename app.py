@@ -5,19 +5,12 @@ from urllib.parse import urlparse
 import os
 import requests
 
-def is_url_or_path(string):
-    # Parse the string and check if it has a valid scheme
-    parsed_url = urlparse(string)
-    if parsed_url.scheme:
-        return True
-    
-    return False
-
 def init():
     global model
     from mlops.model import Onnx
     model = Onnx()
     print("model loaded!!")
+    os.system("python -m unittest discover test_cases/")
 
 def inference(model_inputs:dict) -> dict:
     global model
@@ -28,7 +21,7 @@ def inference(model_inputs:dict) -> dict:
     try:
         if "image" in model_inputs:
             img_p = model_inputs["image"]
-            if is_url_or_path(img_p):
+            if urlparse(img_p).scheme:
                 img = requests.get(img_p) 
                 img = base64.b64decode(img)
             else:
@@ -39,7 +32,7 @@ def inference(model_inputs:dict) -> dict:
         if "test" in model_inputs:
             res = {}
             for img_p in model_inputs["test"]:
-                if is_url_or_path(img_p):
+                if urlparse(img_p).scheme:
                     img = requests.get(img_p) 
                     img = base64.b64decode(img)
                 else:
