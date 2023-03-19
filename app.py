@@ -17,13 +17,8 @@ def init():
     print("model loaded!!")
     os.system("python -m unittest discover test_cases/")
 
-def inference(model_inputs:dict) -> dict:
+def inference(model_inputs):
     global model
-    # try:
-    #     model_inputs = json.loads(model_inputs)
-    # except:
-    #     pass
-    return {"a":str(type(model_inputs)), "b":model_inputs}
     try:
         if "image" in model_inputs:
             img_p = model_inputs["image"]
@@ -34,7 +29,7 @@ def inference(model_inputs:dict) -> dict:
             img = open(f".{img_p}", "rb").read()
             img = model.preprocess_cv2(img)
             pred = model.prediction(img)
-            return pred
+            return {"results":str(pred)}
         if "test" in model_inputs:
             res = {}
             for img_p in model_inputs["test"]:
@@ -45,8 +40,8 @@ def inference(model_inputs:dict) -> dict:
                     img = open(f".{img_p}", "rb").read()
                 img = model.preprocess_cv2(img)
                 pred = model.prediction(img)
-                res[img_p.split('/')[-1]] = pred
+                res[img_p.split('/')[-1]] = str(pred)
             return res
     except:
         import traceback
-        return {"error":traceback.print_ex()}
+        return {"error":str(traceback.print_exc())}

@@ -11,7 +11,7 @@ model_key = "3ba37889-e950-4650-954f-1526431a7832"
 # image_bytes = open("./test_cases/images/turtle.jpeg","rb").read()
 # image_bytes = base64.b64encode(image_bytes).decode('utf-8')
 image_url = "test_cases/images/tench.jpeg"
-model_inputs = json.dumps({"image":image_url}) # anything you want to send to your model
+model_inputs = {"image":image_url} # anything you want to send to your model
 # print(model_inputs)
 # model_inputs = json.loads(model_inputs)
 # print(Image.open(BytesIO(base64.b64decode(model_inputs["image"].encode('utf-8')))))
